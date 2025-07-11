@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>access.log</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: #00ff00;
+      font-family: monospace;
+      overflow: hidden;
+    }
+
+    #matrix {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: #0f0;
+      font-size: 12px;
+      white-space: pre;
+      animation: fadeOut 2.5s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+
+    #video-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: brightness(0.9) contrast(1.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="matrix"></div>
+  <div id="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&loop=1&playlist=dQw4w9WgXcQ"
+      allow="autoplay"
+    ></iframe>
+  </div>
+
+  <script>
+    const matrix = document.getElementById('matrix');
+    const container = document.getElementById('video-container');
+
+    function generateMatrixLines(lines = 30) {
+      let output = '';
+      for (let i = 0; i < lines; i++) {
+        let line = '';
+        for (let j = 0; j < 60; j++) {
+          line += Math.random() > 0.5 ? '1' : '0';
+        }
+        output += line + '\n';
+      }
+      return output;
+    }
+
+    matrix.innerText = generateMatrixLines();
+
+    setTimeout(() => {
+      matrix.style.display = 'none';
+      container.style.display = 'block';
+    }, 2500);
+  </script>
+</body>
+</html>
